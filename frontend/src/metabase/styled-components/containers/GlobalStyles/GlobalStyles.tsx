@@ -4,6 +4,7 @@ import { baseStyle, rootStyle } from "metabase/css/core/base.styled";
 import { defaultFontFiles } from "metabase/css/core/fonts.styled";
 import { getSitePath } from "metabase/lib/dom";
 import { useSelector } from "metabase/lib/redux";
+import { monospaceFontFamily } from "metabase/styled-components/theme";
 import { getMetabaseCssVariables } from "metabase/styled-components/theme/css-variables";
 import { useMantineTheme } from "metabase/ui";
 import { saveDomImageStyles } from "metabase/visualizations/lib/save-chart-image";
@@ -21,6 +22,7 @@ export const GlobalStyles = (): JSX.Element => {
     ${getMetabaseCssVariables(theme)}
     :root {
       --mb-default-font-family: "${font}";
+      --mb-default-monospace-font-family: ${monospaceFontFamily};
     }
 
     ${defaultFontFiles({ baseUrl: sitePath })}
