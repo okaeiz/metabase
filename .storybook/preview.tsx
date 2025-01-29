@@ -62,6 +62,7 @@ function CssVariables() {
 
     :root {
       --mb-default-font-family: "Lato";
+      --mb-default-monospace-font-family: "Monaco", monospace;
 
       /*
       Theming-specific CSS variables.
@@ -81,6 +82,6 @@ function CssVariables() {
   return <Global styles={styles} />;
 }
 
-const preview = { parameters, decorators }
+const preview = { parameters, decorators };
 
 export default preview;
