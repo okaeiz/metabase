@@ -38,7 +38,7 @@ export function SimpleDataPickerView({
         <TextInput
           data-autofocus
           type="search"
-          icon={<Icon name="search" size={16} />}
+          icon={<Icon name="search" size={16} aria-hidden />}
           mb="sm"
           placeholder={t`Search…`}
           onChange={e => setSearchText(e.target.value ?? "")}
@@ -59,7 +59,13 @@ export function SimpleDataPickerView({
             <NavLink
               key={option.id}
               active={selectedEntity === option.id}
-              icon={<Icon c="var(--mb-color-icon-primary)" name="table" />}
+              icon={
+                <Icon
+                  c="var(--mb-color-icon-primary)"
+                  name="table"
+                  aria-hidden
+                />
+              }
               label={option.name}
               onClick={() => {
                 onClick(option.id);
