@@ -92,6 +92,18 @@
   (testing "conversations-list"
     (test-auth! conversations-endpoint slack/conversations-list)
 
+    (testing "both public and private channels should be requested"
+      (let [request (atom nil)]
+        (http-fake/with-fake-routes
+          {conversations-endpoint
+           (fn [req]
+             (reset! request req)
+             (mock-200-response (mock-conversations-response-body req)))}
+          (slack/conversations-list))
+        (let [{:keys [query-string]} @request
+              {:keys [types]}        (parse-query-string query-string)]
+          (is (= "public_channel,private_channel" types)))))
+
     (testing "should be able to fetch channels and paginate"
       (http-fake/with-fake-routes {conversations-endpoint (comp mock-200-response mock-conversations-response-body)}
         (let [expected-result (map slack/channel-transform

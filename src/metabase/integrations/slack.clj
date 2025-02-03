@@ -218,7 +218,7 @@
   By default only fetches channels, and returns them with their # prefix. Note the call to [[paged-list-request]] will
   only fetch the first [[max-list-results]] items."
   [& {:as query-parameters}]
-  (let [params (merge {:exclude_archived true, :types "public_channel"} query-parameters)]
+  (let [params (merge {:exclude_archived true, :types "public_channel,private_channel"} query-parameters)]
     (paged-list-request "conversations.list"
                         ;; response -> channel names
                         #(->> % :channels (map channel-transform))
